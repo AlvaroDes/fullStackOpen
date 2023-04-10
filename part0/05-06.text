@@ -1,0 +1,20 @@
+Accediendo y creando una nota nueva en una SPA:
+
+Comprende solo una página HTML obtenida del servidor, cuyo contenido se manipula con JavaScript que se ejecuta en el navegador.
+El formulario no tiene atributos de action o method para definir cómo y dónde enviar los datos de entrada.
+Browser --> server: La solicitud POST contiene la nueva nota como datos JSON que contienen tanto el contenido "content" y "date".
+
+nota sobre el navegador:
+La cabecera Content-Type de la solicitud le dice al servidor que los datos incluidos están representados en formato JSON.
+
+Server --> browser: Responde con el código de estado 201 Created. El navegador permanece en la misma página y no envía más solicitudes HTTP.
+
+nota sobre el navegador:
+No se envían los datos del formulario de la forma tradicional, sino que se utiliza el código JavaScript que se obtuvo del servidor.
+El controlador de eventos del codigo evita el manejo predeterminado del envío de formularios.
+
+Browser --> server: Procede a crear una nueva nota, la agrega a la lista de notas, vuelve a representar la lista de notas en la página y envía la nueva nota al servidor.
+
+nota sobre el navegador:
+Los datos se enviarán con una solicitud HTTP POST y el tipo de datos será JSON.
+Luego, los datos se envían como JSON-string.

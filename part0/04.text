@@ -1,0 +1,25 @@
+Creando una nota nueva en la pagina:
+
+La página de notas contiene un elemento de formulario.
+Browser --> server: Cuando se hace clic en el botón del formulario, el navegador enviará la entrada del usuario al servidor con un HTTP POST.
+Server --> browser: El servidor responde con el código de estado HTTP 302, redirrección de URL. El servidor solicita al navegador que realice una nueva solicitud HTTP GET a la dirección notes.
+
+nota sobre el navegador:
+Entonces, el navegador vuelve a cargar la página de Notas. La recarga provoca tres solicitudes HTTP más.
+
+Browser --> server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server --> browser: main.css
+Browser --> server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server --> browser: main.js
+Browser --> server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server --> browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+nota sobre el navegador:
+La pestaña network también muestra los datos enviados con el formulario.
+
+Browser --> server: La etiqueta Form tiene atributos action y method, que definen que el envío del formulario se realiza como una solicitud HTTP POST a la dirección new_note.
+Server --> browser: El código está en el servidor, responsable de la solicitud POST. El servidor crea un nuevo objeto de nota y lo agrega a una matriz llamada notes
+
+nota sobre el servidor:
+Los objetos Note tienen dos campos: content que contiene el contenido real de la nota y date que contiene la fecha y hora en que se creó la nota.
+El servidor no guarda nuevas notas en una base de datos, por lo que las nuevas notas desaparecen cuando se reinicia el servidor.
